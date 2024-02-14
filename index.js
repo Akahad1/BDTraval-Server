@@ -11,7 +11,7 @@ const port =process.env.PORT || 5000
 // JqYFzby3EXdju6Gt
 // BdTravel
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = `mongodb+srv://${process.env.NAME}:${process.env.PASSWORLD}@cluster0.xuxoczf.mongodb.net/?retryWrites=true&w=majority`;
 
 console.log(uri)
@@ -42,6 +42,17 @@ async function run() {
         const result =await Sportdata.find(qurey).toArray()
         res.send(result)
     })
+    app.get('/sportdata/:id', async(req,res)=>{
+        
+        const id=req.params.id
+        console.log(id)
+        const qurey ={_id: new ObjectId(id)}
+        const result = await Sportdata.findOne(qurey)
+        res.send(result)
+        
+    })
+    
+    
 
     
   } finally {
