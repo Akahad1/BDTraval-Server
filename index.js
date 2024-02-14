@@ -29,17 +29,21 @@ async function run() {
   try {
    
     await client.connect();
-    const instactorCollation =client.db('CoderMaster').collection('Instactor')
+    
+    const Sportdata =client.db('BdTravel').collection('Spotdata')
     
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
 
-    app.get('/instactor', async(req,res)=>{
+   
+    app.get('/sportdata', async(req,res)=>{
         const qurey ={}
-        const result =await instactorCollation.find(qurey).toArray()
+        const result =await Sportdata.find(qurey).toArray()
         res.send(result)
     })
+
+    
   } finally {
    
   }
